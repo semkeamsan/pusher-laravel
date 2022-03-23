@@ -18,8 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::group(['prefix' => '','as' => 'api.'],function(){
-    Route::get('pusher',function(){
-        return 1;
+    Route::get('pusher',function(Request $request){
+    return config('broadcasting.connections.pusher');
     })->name('pusher');
     Route::post('pusher', 'PusherController@store')->name('pusher.store');
 });
