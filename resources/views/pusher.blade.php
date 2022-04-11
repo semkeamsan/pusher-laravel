@@ -31,60 +31,60 @@
 </head>
 
 <body>
-    <div class="container my-2">
-        <div class="row">
-            <div class="col-xl-4 mb-3">
-                <form action="{{ route('api.pusher.store') }}" class="sticky-top">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>{{ __('Write something') }}</h4>
-                        </div>
-                        <div class="card-body">
-                            <textarea name="" class="form-control" cols="30" rows="10"></textarea>
-                        </div>
-                        <div class="card-footer">
-                            <div class="float-end">
-                                <button class="btn btn-primary" type="submit">{{ __('Send') }}</button>
-                            </div>
+<div class="container my-2">
+    <div class="row">
+        <div class="col-xl-4 mb-3">
+            <form action="{{ route('api.pusher.store') }}" class="sticky-top">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{{ __('Write something') }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <textarea name="" class="form-control" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="card-footer">
+                        <div class="float-end">
+                            <button class="btn btn-primary" type="submit">{{ __('Send') }}</button>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="col-xl-8 border" id="show-data">
-
-            </div>
-        </div>
-    </div>
-
-    <div id="my-modal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="my-modal-title">Title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body row">
+            </form>
+        </div>
+        <div class="col-xl-8 border" id="show-data">
 
-                </div>
+        </div>
+    </div>
+</div>
+
+<div id="my-modal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">Title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body row">
+
             </div>
         </div>
     </div>
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <strong class="me-auto">Title</strong>
-                <small></small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Hello, world! This is a toast message.
-            </div>
+</div>
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Title</strong>
+            <small></small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Hello, world! This is a toast message.
         </div>
     </div>
+</div>
 
-    <script>
-        const PUSHER = {
+<script>
+    const PUSHER = {
         init: function () {
             this.form();
             this.setup();
@@ -96,8 +96,8 @@
             });
             var channel = pusher.subscribe(`{{ $event->broadcastOn() }}`);
             channel.bind(`{{ $event->broadcastAs() }}`, ({
-                data
-            }) => {
+                                                             data
+                                                         }) => {
 
                 // result here
                 console.log(data);
@@ -115,9 +115,8 @@
         },
 
 
-
-        template : function(data){
-            var image = `./image/${this.random(1,5)}.png`;
+        template: function (data) {
+            var image = `./image/${this.random(1, 5)}.png`;
             var $t = $(`<div class="col-xl-3 mb-3">
                         <div class="card">
                             <img src="${image}" class="card-img-top">
@@ -137,23 +136,23 @@
                             </div>
                         </div>
                     </div>`);
-                $t.find(`.btn-danger`).click(function () {
-                    $t.remove();
-                    if ($(`.modal-body>div`).length == 0) {
-                        $(`#my-modal`).modal(`hide`);
-                    }
-                });
-                $t.find(`.btn-success`).click(function () {
-                    $t.remove();
-                    if ($(`.modal-body>div`).length == 0) {
-                        $(`#my-modal`).modal(`hide`);
-                        var $toast = $(`#liveToast`).clone();
-                        $(`#liveToast`).parent().append($toast);
-                        $toast.find(`small`).text(PUSHER.time(new Date));
-                        $toast.toast(`show`);
-                    }
-                });
-                return $t;
+            $t.find(`.btn-danger`).click(function () {
+                $t.remove();
+                if ($(`.modal-body > div`).length == 0) {
+                    $(`#my-modal`).modal(`hide`);
+                }
+            });
+            $t.find(`.btn-success`).click(function () {
+                $t.remove();
+                if ($(`.modal-body > div`).length == 0) {
+                    $(`#my-modal`).modal(`hide`);
+                    var $toast = $(`#liveToast`).clone();
+                    $(`#liveToast`).parent().append($toast);
+                    $toast.find(`small`).text(PUSHER.time(new Date));
+                    $toast.toast(`show`);
+                }
+            });
+            return $t;
         },
         form: function () {
             $(`form`).submit(function (e) {
@@ -168,10 +167,10 @@
                 });
             });
         },
-         random : function(min, max) {
-              return Math.floor(Math.random() * (max - min + 1) + min)
+        random: function (min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min)
         },
-        timeAgo:function (){
+        timeAgo: function () {
             $(`[data-toggle="time-ago"]`).each(function () {
                 var t = $(this).data('date');
                 var x = setInterval(() => {
@@ -254,9 +253,8 @@
             }
         }
 
-
     };
 
     PUSHER.init();
-    </script>
+</script>
 </body>
