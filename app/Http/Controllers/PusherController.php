@@ -21,13 +21,13 @@ class PusherController extends Controller
             return [
                 'status' => false,
                 'message' => $th->getMessage(),
-                'data'    => $request->all(),
+                'value'    => $request->all(),
             ];
         }
         return [
             'status' => true,
             'message' => __('Successfully'),
-            'data'    => $request->all(),
+            'value'    => $request->all(),
         ];
     }
 

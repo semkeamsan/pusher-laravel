@@ -89,6 +89,7 @@
             this.form();
             this.setup();
         },
+
         setup: function () {
             var pusher = new Pusher(`{{ env('PUSHER_APP_KEY') }}`, {
                 cluster: `{{ env('PUSHER_APP_CLUSTER') }}`
@@ -97,6 +98,9 @@
             channel.bind(`{{ $event->broadcastAs() }}`, ({
                 data
             }) => {
+
+                // result here
+                console.log(data);
                 $('#show-data').append(`
                         ${new Date}
                         <pre><code id=data>${PUSHER.json.prettyPrint(data)}</code></pre>
@@ -105,8 +109,12 @@
                 $(`.modal-body`).prepend(this.template(data));
                 $(`#my-modal`).modal(`show`);
                 this.timeAgo();
+
             });
         },
+
+
+
         template : function(data){
             var image = `./image/${this.random(1,5)}.png`;
             var $t = $(`<div class="col-xl-3 mb-3">
@@ -244,6 +252,8 @@
                     .replace(jsonLine, PUSHER.json.replacer);
             }
         }
+
+
     };
 
     PUSHER.init();

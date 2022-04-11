@@ -29,7 +29,9 @@ class MyEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return  'my-channel';
+        return  $this->data['channel']??'my-channel';
+
+
     }
     public function broadcastAs()
     {
