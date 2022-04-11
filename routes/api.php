@@ -24,3 +24,7 @@ Route::group(['as' => 'api.'],function(){
     Route::post('pusher', 'PusherController@store')->name('pusher.store');
 });
 
+
+Route::get('test', function(){
+    return 'Test';
+});
