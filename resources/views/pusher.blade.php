@@ -110,6 +110,7 @@
                 $(`#my-modal`).modal(`show`);
                 this.timeAgo();
 
+
             });
         },
 
