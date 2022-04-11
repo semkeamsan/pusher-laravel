@@ -17,6 +17,7 @@ class MyEvent implements ShouldBroadcast
      * @return void
      */
     public $data;
+
     public function __construct($data = [])
     {
         $this->data = $data;
@@ -29,10 +30,9 @@ class MyEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return  $this->data['channel']??'my-channel';
-
-
+        return $this->data['channel'] ?? 'my-channel';
     }
+
     public function broadcastAs()
     {
         return 'my-event';

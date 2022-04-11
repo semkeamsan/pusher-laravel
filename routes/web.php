@@ -18,3 +18,4 @@ Route::get('/', 'PusherController@index');
 Route::resource('pusher', 'PusherController');
 
 Auth::routes();
+

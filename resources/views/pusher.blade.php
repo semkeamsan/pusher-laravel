@@ -91,8 +91,8 @@
         },
 
         setup: function () {
-            var pusher = new Pusher(`{{ env('PUSHER_APP_KEY') }}`, {
-                cluster: `{{ env('PUSHER_APP_CLUSTER') }}`
+            var pusher = new Pusher(`{{ config('custom.pusher_app_key') }}`, {
+                cluster: `{{ config('custom.pusher_app_cluster') }}`
             });
             var channel = pusher.subscribe(`{{ $event->broadcastOn() }}`);
             channel.bind(`{{ $event->broadcastAs() }}`, ({
